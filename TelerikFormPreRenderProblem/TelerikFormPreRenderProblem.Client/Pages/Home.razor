@@ -1,0 +1,19 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<TelerikButton>@_text</TelerikButton>
+
+<TelerikForm Model="_model">
+    <FormValidation>
+        <DataAnnotationsValidator />
+    </FormValidation>
+</TelerikForm>
+
+@code
+{
+    private readonly string _text = "Hello World";
+    private readonly FormModel _model = new FormModel("MyName", 22);
+
+    private record FormModel(string Name, int Age);
+}
