@@ -6,14 +6,32 @@
 
 <TelerikForm Model="_model">
     <FormValidation>
-        <DataAnnotationsValidator />
+        <DataAnnotationsValidator/>
     </FormValidation>
 </TelerikForm>
+
+<EditForm Model="_model" OnValidSubmit="() => { }" FormName="MyForm">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <label>
+        Name:
+        <InputText @bind-Value="_model.Name"/>
+    </label>
+    <label>
+        Age:
+        <InputNumber @bind-Value="_model.Age"/>
+    </label>
+    <button type="submit">Submit</button>
+</EditForm>
 
 @code
 {
     private readonly string _text = "Hello World";
-    private readonly FormModel _model = new FormModel("MyName", 22);
+    private readonly FormModel _model = new("MyName", 22);
 
-    private record FormModel(string Name, int Age);
+    private record FormModel(string Name, int Age)
+    {
+        public string Name { get; set; } = Name;
+        public int Age { get; set; } = Age;
+    }
 }
